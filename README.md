@@ -8,15 +8,12 @@ Given two documents, 𝒟<sub>𝒜</sub> and 𝒟<sub>𝒰</sub> as well as some
 
 ### Python implementation
 
-To use LambdaG with Python install the LambdaG package, by either cloning this repository:
-
+To use LambdaG with Python install the LambdaG package from PyPI:
 ```
-git clone https://github.com/AndreaNini/LambdaG
-cd LambdaG
-pip install .
+pip install lambdag
 ```
 
-or directly using pip:
+or alternatively directly from this repository:
 
 ```
 pip install git+https://github.com/AndreaNini/LambdaG
@@ -47,7 +44,7 @@ print(f"Accuracy: {accuracy_score(test_labels, test_probas[:,1]>=0.5):.3f}")
 
 For further examples see the [examples](examples) folder.
 
-Please keep in mind that, for best results, LambdaG should be used on texts that have been preprocessed with [POSNoise](https://arxiv.org/abs/2005.06605).
+Please keep in mind that, for best results, LambdaG should be used on texts that have been preprocessed with [POSNoise](https://arxiv.org/abs/2005.06605), (implemented [here](https://github.com/Halvani/POSNoise) for example).
 
 ### R implementation
 An alternative implementation in R is provided in the [`idiolect`](https://andreanini.github.io/idiolect/articles/idiolect.html) package.
