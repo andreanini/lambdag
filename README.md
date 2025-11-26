@@ -42,7 +42,7 @@ test_probas = method.predict_proba(test_problems, test_author_texts)
 print(f"Accuracy: {accuracy_score(test_labels, test_probas[:,1]>=0.5):.3f}")
 ```
 
-For further examples see [examples](examples).
+For further examples see [examples](https://github.com/andreanini/lambdag/tree/main/examples).
 
 Please keep in mind that, for best results, LambdaG should be used on texts that have been preprocessed with **POSNoise** ([paper](https://arxiv.org/abs/2005.06605), [original implementation](https://github.com/Halvani/POSNoise)).
 
