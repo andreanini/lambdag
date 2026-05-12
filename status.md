@@ -58,30 +58,25 @@
 ## Final Status (Completed)
 
 ### Test Results
-All 9 tests pass successfully:
-- `test_lambdaG_visualize_basic` - Basic HTML output functionality ✓
-- `test_lambdaG_visualize_with_unmasked` - Unmasked sentence handling ✓
-- `test_lambdaG_visualize_latex_output` - LaTeX output format ✓
-- `test_invalid_inputs` - Input validation error handling ✓
-- `test_deterministic_output` - Reproducibility with rng seed ✓
-- `test_sentence_split` - Sentence splitting helper ✓
-- `test_color_coding_functions` - Color mapping boundary values ✓
-- `test_lambdaG_visualize_relative_scale` - Relative (z-score) scale ✓
-- `test_lambdaG_visualize_negative_coloring` - Negative value coloring ✓
+All 40 tests pass successfully across 4 test files:
+- `tests/test_color_coding.py` - 6 tests for color mapping functions
+- `tests/test_html_generator.py` - 7 tests for HTML output generation
+- `tests/test_latex_generator.py` - 3 tests for LaTeX output generation
+- `tests/test_visualize.py` - 24 tests for main visualization functionality
 
 ### Coverage Report
 ```
 Name                                         Stmts   Miss  Cover   Missing
 --------------------------------------------------------------------------
 src/lambdag/visualize/__init__.py                2      0   100%
-src/lambdag/visualize/color_coding.py           46      4    91%
-src/lambdag/visualize/html_generator.py        136     21    85%
-src/lambdag/visualize/lambdaG_visualize.py      77      8    90%
+src/lambdag/visualize/color_coding.py           46      0   100%
+src/lambdag/visualize/html_generator.py        136     14    90%
+src/lambdag/visualize/lambdaG_visualize.py      77      3    96%
 src/lambdag/visualize/language_model.py          8      0   100%
-src/lambdag/visualize/latex_generator.py        48     25    48%
+src/lambdag/visualize/latex_generator.py        48      7    85%
 src/lambdag/visualize/llr_computation.py        45      0   100%
 --------------------------------------------------------------------------
-TOTAL                                          362     58    84%
+TOTAL                                          362     24    93%
 ```
 
 ### Files Created/Modified
@@ -92,8 +87,11 @@ TOTAL                                          362     58    84%
 5. `src/lambdag/visualize/color_coding.py` - Color mapping functions
 6. `src/lambdag/visualize/html_generator.py` - HTML output generation
 7. `src/lambdag/visualize/latex_generator.py` - LaTeX output generation
-8. `tests/test_visualize.py` - 9 comprehensive tests
-9. `examples/example_visualization.ipynb` - Shakespeare/Hemingway example (fixed)
+8. `tests/test_visualize.py` - 24 tests for main visualization
+9. `tests/test_color_coding.py` - 6 tests for color mapping
+10. `tests/test_html_generator.py` - 7 tests for HTML generation
+11. `tests/test_latex_generator.py` - 3 tests for LaTeX generation
+12. `examples/example_visualization.ipynb` - Shakespeare/Hemingway example (fixed)
 
 ### Notebook Fixes
 - Fixed Shakespeare sentences to be complete sentences (not line fragments)
@@ -101,4 +99,4 @@ TOTAL                                          362     58    84%
 - Changed HTML display to use iframe to avoid CSS conflicts with notebook
 
 ### PR Ready
-The feature branch `feature/token-level-visualization` is ready for PR submission.
+The feature branch `feature/token-level-visualization` is ready for PR submission to `andreanini/lambdag`.
