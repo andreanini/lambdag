@@ -1,6 +1,6 @@
 # LambdaG - Grammar as a behavioral biometric: Using cognitively motivated grammar models for authorship verification
 
-This is the official repository for the paper "[Grammar as a behavioral biometric: Using cognitively motivated grammar models for authorship verification](https://arxiv.org/abs/2403.08462)". The paper proposes an authorship verification (AV) method - called **LambdaG** - which seeks to answer the question of whether two given documents are written by the same author, or not. In contrast to existing AV methods which often suffer from high complexity, low explainability and especially from a lack of clear scientific justification, LambdaG represents a simpler method based on modeling the grammar of an author following Cognitive Linguistics principles.
+This is the official repository for the paper "[Grammar as a behavioral biometric: Using cognitively motivated grammar models for authorship verification](https://doi.org/10.1057/s41599-025-06340-3)". The paper proposes an authorship verification (AV) method - called **LambdaG** - which seeks to answer the question of whether two given documents are written by the same author, or not. In contrast to existing AV methods which often suffer from high complexity, low explainability and especially from a lack of clear scientific justification, LambdaG represents a simpler method based on modeling the grammar of an author following Cognitive Linguistics principles.
 
 Given two documents, 𝒟<sub>𝒜</sub> and 𝒟<sub>𝒰</sub> as well as some reference documents $𝔻_{\text{ref}}$, the ratio of the likelihoods of 𝒟<sub>𝒰</sub> given 𝒜's grammar versus the grammar of a reference population’s grammar is calculated. Based on this ratio a final prediction of whether 𝒜=𝒰 holds is made.
 
@@ -55,13 +55,16 @@ We will publish the data used in our paper soon.
 ## Citation
 If you use our code in your work, please consider citing:
 ```
-@misc{nini2025grammarbehavioralbiometricusing,
-    title={Grammar as a Behavioral Biometric: Using Cognitively Motivated Grammar Models for Authorship Verification}, 
-    author={Andrea Nini and Oren Halvani and Lukas Graner and Valerio Gherardi and Shunichi Ishihara},
-    year={2025},
-    eprint={2403.08462},
-    archivePrefix={arXiv},
-    primaryClass={cs.CL},
-    url={https://arxiv.org/abs/2403.08462}, 
+@article{nini2025grammarbehavioralbiometricusing,
+    title={Grammar as a Behavioral Biometric: {{Using}} Cognitively Motivated Grammar Models for Authorship Verification}, 
+    author={Nini, Andrea and Halvani, Oren and Graner, Lukas and Titze, Sophie and Gherardi, Valerio and Ishihara, Shunichi},
+    year={2026},
+    journal = {Humanities and Social Sciences Communications},
+    volume = {13},
+    number = {1},
+    pages = {455},
+    issn = {2662-9992},
+    doi = {10.1057/s41599-025-06340-3},
 }
+
 ```
