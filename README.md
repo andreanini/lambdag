@@ -52,7 +52,18 @@ Please keep in mind that, for best results, LambdaG should be used on texts that
 An alternative implementation in R is provided in the [`idiolect`](https://andreanini.github.io/idiolect/articles/idiolect.html) package.
 
 ## Data
-We will publish the data used in our paper soon.
+This is selection of datasets used in the paper that can be shared freely:
+
+|Name|Link to repository|
+|---|---|
+|Enron corpus|[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20121268.svg)](https://doi.org/10.5281/zenodo.20121268)|
+|Wiki|[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20128904.svg)](https://doi.org/10.5281/zenodo.20128904)|
+|Perverted Justice|[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20157078.svg)](https://doi.org/10.5281/zenodo.20157078)|
+|Apricity|[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20173731.svg)](https://doi.org/10.5281/zenodo.20173731)|
+|TripAdvisor|[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20142059.svg)](https://doi.org/10.5281/zenodo.20142059)|
+|Blog|[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20147769.svg)](https://doi.org/10.5281/zenodo.20147769)|
+
+If you are interested in the other datasets please email us.
 
 ## Citation
 If you use our code in your work, please consider citing:
