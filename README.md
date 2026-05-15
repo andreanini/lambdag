@@ -52,7 +52,7 @@ Please keep in mind that, for best results, LambdaG should be used on texts that
 An alternative implementation in R is provided in the [`idiolect`](https://andreanini.github.io/idiolect/articles/idiolect.html) package.
 
 ## Data
-This is selection of datasets used in the paper that can be shared freely:
+This is selection of datasets used in the paper that can be shared freely. Please note that, however, for copyright and GDPR reasons these are released only after pre-processing for content-masking (using the POSnoise algorithm).
 
 |Name|Link to repository|
 |---|---|
