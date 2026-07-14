@@ -4,6 +4,9 @@ This is the official repository for the paper "[Grammar as a behavioral biometri
 
 Given two documents, 𝒟<sub>𝒜</sub> and 𝒟<sub>𝒰</sub> as well as some reference documents $𝔻_{\text{ref}}$, the ratio of the likelihoods of 𝒟<sub>𝒰</sub> given 𝒜's grammar versus the grammar of a reference population’s grammar is calculated. Based on this ratio a final prediction of whether 𝒜=𝒰 holds is made.
 
+Additionaly, this implementation also exposes two novel normalisation techniques (Square Root Correction and the Hapax Correction), proposed in the paper "[Normalisation-Based Likelihood Ratio Estimation for
+Forensic Authorship Verification](https://arxiv.org/abs/2607.09501)", for deriving likelihood ratios from LambdaG without the need of a training dataset. 
+
 ## Usage
 
 ### Python implementation
@@ -26,33 +29,35 @@ from sklearn.metrics import accuracy_score, roc_auc_score
 from lambdag.corpus import load_corpus
 from lambdag import LambdaGMethod
 
-# load train and test corpus
-train_problems, train_labels, train_author_texts = load_corpus("corpus/path/train")
-test_problems, test_labels, test_author_texts = load_corpus("corpus/path/test")
-
 # instantiate method object
-method = LambdaGMethod(basis="tokens", order=8)
+method = LambdaGMethod(
+    basis="tokens", 
+    order=10, 
+    num_references=30, 
+    calibration="logistic_regression"
+)
 
-# train method
+# train method 
+# (*not* needed when using `square_root` or `hapax` calibration)
+train_problems, train_labels, train_author_texts = load_corpus("corpus/path/train")
 method.fit(train_problems, train_author_texts, train_labels)
 
 # evaluate on test corpus
+test_problems, test_labels, test_author_texts = load_corpus("corpus/path/test")
 test_probas = method.predict_proba(test_problems, test_author_texts)
 
 print(f"Accuracy: {accuracy_score(test_labels, test_probas[:,1]>=0.5):.3f}")
 ```
 
-A text heatmap with colour-coded tokens depending on the $\lambda_G$ value can be made using the `lambdaG_visualize()` function (see [example](https://github.com/andreanini/lambdag/blob/main/examples/example_visualization.ipynb)).
+A text heatmap with colour-coded tokens depending on the $\lambda_G$ value can be made using the `lambdaG_visualize()` function (see [example](https://github.com/andreanini/lambdag/blob/main/examples/example_visualization.ipynb)). This feature requires the optional visualization dependencies, which can be installed with `pip install lambdag[visualize]`.
 
 For further examples see [examples](https://github.com/andreanini/lambdag/tree/main/examples).
-
-Please keep in mind that, for best results, LambdaG should be used on texts that have been preprocessed with **POSNoise** ([paper](https://arxiv.org/abs/2005.06605), [original implementation](https://github.com/Halvani/POSNoise)).
 
 ### R implementation
 An alternative implementation in R is provided in the [`idiolect`](https://andreanini.github.io/idiolect/articles/idiolect.html) package.
 
 ## Data
-This is selection of datasets used in the paper that can be shared freely. Please note that, however, for copyright and GDPR reasons these are released only after pre-processing for content-masking (using the POSnoise algorithm).
+This is selection of datasets used in the paper that can be shared freely. Please note that, however, for copyright and GDPR reasons these are released only after pre-processing for content-masking (using the POSnoise algorithm). If you are interested in the other datasets please email us.
 
 |Name|Link to repository|
 |---|---|
@@ -63,11 +68,12 @@ This is selection of datasets used in the paper that can be shared freely. Pleas
 |TripAdvisor|[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20142059.svg)](https://doi.org/10.5281/zenodo.20142059)|
 |Blog|[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20147769.svg)](https://doi.org/10.5281/zenodo.20147769)|
 
-If you are interested in the other datasets please email us.
+
+Please keep in mind that, for best results, LambdaG should be used on texts that have been preprocessed with **POSNoise** ([paper](https://arxiv.org/abs/2005.06605), [original implementation](https://github.com/Halvani/POSNoise)).
 
 ## Citation
 If you use our code in your work, please consider citing:
-```
+```bibtex
 @article{nini2025grammarbehavioralbiometricusing,
     title={Grammar as a Behavioral Biometric: {{Using}} Cognitively Motivated Grammar Models for Authorship Verification}, 
     author={Nini, Andrea and Halvani, Oren and Graner, Lukas and Titze, Sophie and Gherardi, Valerio and Ishihara, Shunichi},
@@ -79,5 +85,17 @@ If you use our code in your work, please consider citing:
     issn = {2662-9992},
     doi = {10.1057/s41599-025-06340-3},
 }
+```
 
+and (especially when using `square_root` and `hapax` calibration methods):
+```bibtex
+@misc{barlow2026normalisationbasedlikelihoodratioestimation,
+      title={Normalisation-Based Likelihood Ratio Estimation for Forensic Authorship Verification}, 
+      author={Sadie Barlow and Andrea Nini and Edoardo Manino},
+      year={2026},
+      eprint={2607.09501},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2607.09501}, 
+}
 ```

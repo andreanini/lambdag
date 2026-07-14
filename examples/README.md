@@ -3,11 +3,11 @@
 Some illustrative example scripts.
 
 ### run_lambdag.py
-Runs LambdaG on a given AV training and test corpus. Using logistic regression the lambda_g scores are calibrated corresponding to the training and then scores of the test corpus are evaluated accordingly. 
+Runs LambdaG on a given AV test corpus. When using `logistic_regression` as calibration method, the lambda_g scores are calibrated corresponding to a training dataset.  
 
-Example output:
+Example output (logistic regression):
 ```
-> python run_lambdag.py Enron_Posnoised_Training Enron_Posnoised_Test --num_references 50 --order 4
+> python run_lambdag.py Enron_Posnoised_Training Enron_Posnoised_Test --num_references 50 --order 4 -c logistic_regression
 Problem #0001: | label = 1.0 | lambda_G score =    3.025 | Y-probability = 0.572
 Problem #0002: | label = 0.0 | lambda_G score = -237.635 | Y-probability = 0.015
 Problem #0003: | label = 1.0 | lambda_G score =  447.686 | Y-probability = 1.000
@@ -26,6 +26,33 @@ Problem #0096: | label = 1.0 | lambda_G score =  244.625 | Y-probability = 0.992
 
 Accuracy: 0.906
 ROC-AUC:  0.941
+Cllr:     0.441
+```
+
+When using the `hapax` or `square_root` calibration methods, **no** training corpus is needed and the training path argument can be omitted. Hereby calibration exclusively depends on the AV cases of the test dataset themselves.
+
+Example output (hapax, no training corpus needed):
+```
+> python run_lambdag.py Enron_Posnoised_Test --num_references 30 --order 10 -c hapax
+Problem #0001: | label = 1.0 | lambda_G score =    4.276 | Y-probability = 0.567
+Problem #0002: | label = 0.0 | lambda_G score =  -73.024 | Y-probability = 0.042
+Problem #0003: | label = 1.0 | lambda_G score =  140.036 | Y-probability = 0.998
+Problem #0004: | label = 0.0 | lambda_G score =  -58.615 | Y-probability = 0.068
+Problem #0005: | label = 1.0 | lambda_G score =  111.795 | Y-probability = 0.993
+Problem #0006: | label = 0.0 | lambda_G score =   -8.233 | Y-probability = 0.380
+Problem #0007: | label = 1.0 | lambda_G score =   20.539 | Y-probability = 0.772
+...
+Problem #0090: | label = 0.0 | lambda_G score =  -69.285 | Y-probability = 0.007
+Problem #0091: | label = 1.0 | lambda_G score =   16.062 | Y-probability = 0.758
+Problem #0092: | label = 0.0 | lambda_G score =  -89.283 | Y-probability = 0.005
+Problem #0093: | label = 1.0 | lambda_G score =  -69.904 | Y-probability = 0.016
+Problem #0094: | label = 0.0 | lambda_G score =  -60.986 | Y-probability = 0.062
+Problem #0095: | label = 0.0 | lambda_G score =  -12.745 | Y-probability = 0.309
+Problem #0096: | label = 1.0 | lambda_G score =   77.071 | Y-probability = 0.969
+
+Accuracy: 0.906
+ROC-AUC:  0.936
+Cllr:     0.428
 ```
 
 ### run_language_models.py

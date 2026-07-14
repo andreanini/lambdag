@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "LambdaG"
-version = "0.1.1"
+version = "0.2.0"
 description = "The Python library containing the implementation of the authorship verification method 'LambdaG', including a kneser-ney language model implementation."
 readme = "README.md"
 license = "MIT"
@@ -12,5 +12,13 @@ requires-python = ">= 3.9"
 dependencies = [
     "numpy",
     "scikit-learn",
-    "tqdm"
+    "tqdm",
+]
+
+[project.optional-dependencies]
+visualize = [
+    "pandas",
+]
+dev = [
+    "pytest"
 ]

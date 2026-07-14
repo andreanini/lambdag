@@ -49,7 +49,7 @@ def load_corpus(
     problems = []
     truths = []
     author_texts = defaultdict(set)
-    problem_paths = list(path.glob("**/"))[1:]
+    problem_paths = sorted(path.glob("**/"))[1:]
     if with_progress:
         problem_paths = tqdm(problem_paths, leave=False)
     for problem in problem_paths:
